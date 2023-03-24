@@ -4,23 +4,35 @@ using Microsoft.AspNetCore.Mvc;
 using BakeryTreats.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace BakeryTreats.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly BakeryTreatsContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(BakeryTreatsContext db)
+    public TreatsController(UserManager<ApplicationUser> userManager, BakeryTreatsContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
-    public ActionResult Index()
+    
+    public async Task<ActionResult> Index()
     {
-      List<Treat> model = _db.Treats
-                            .ToList();
-      return View(model);
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      List<Treat> userTreats = _db.Treats
+                          .Where(entry => entry.User.Id == currentUser.Id)
+                          // .Include(treat => treat.Flavor)
+                          .ToList();
+      return View(userTreats);
     }
 
     public ActionResult Create()
@@ -28,16 +40,35 @@ namespace BakeryTreats.Controllers
       return View();
     }
 
-    [HttpPost]
-    public ActionResult Create(Treat treat)
+    // [HttpPost]
+    // public ActionResult Create(Treat treat)
+    // {
+    //   if (!ModelState.IsValid)
+    //   {
+    //       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
+    //       return View(treat);
+    //   }
+    //   else
+    //   {
+    //     _db.Treats.Add(treat);
+    //     _db.SaveChanges();
+    //     return RedirectToAction("Index");
+    //   }
+    // }
+
+  [HttpPost]
+    public async Task<ActionResult> Create(Treat treat)
     {
       if (!ModelState.IsValid)
       {
-          ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
-          return View(treat);
+        ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
+        return View(treat);
       }
       else
       {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+        treat.User = currentUser;
         _db.Treats.Add(treat);
         _db.SaveChanges();
         return RedirectToAction("Index");
