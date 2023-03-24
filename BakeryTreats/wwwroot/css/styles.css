@@ -1,10 +1,18 @@
 body {
   font-family: 'Delius Unicase', cursive;
+  padding-top: 20px;
+}
+
+.button-div {
+  padding: 5px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 .nav-button {
   border-radius: 25px;
-  margin: 10px;
+  margin: px;
   transition: all 0.2s ease-in-out;
   color: #4c463d;
   padding: 10px;
