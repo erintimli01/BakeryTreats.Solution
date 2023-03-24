@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BakeryTreats.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace BakeryTreats
 {
@@ -21,6 +22,10 @@ namespace BakeryTreats
                         )
                       );
 
+      builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ToDoListContext>()
+                .AddDefaultTokenProviders();
+
       WebApplication app = builder.Build();
 
       // app.UseDeveloperExceptionPage();
@@ -28,6 +33,9 @@ namespace BakeryTreats
       app.UseStaticFiles();
 
       app.UseRouting();
+
+      app.UseAuthentication(); 
+      app.UseAuthorization();
 
       app.MapControllerRoute(
           name: "default",
