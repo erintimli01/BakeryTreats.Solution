@@ -23,7 +23,7 @@ namespace BakeryTreats
                       );
 
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ToDoListContext>()
+                .AddEntityFrameworkStores<BakeryTreatsContext>()
                 .AddDefaultTokenProviders();
 
       WebApplication app = builder.Build();
