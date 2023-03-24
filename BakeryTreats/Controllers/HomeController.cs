@@ -7,9 +7,9 @@ namespace BakeryTreats.Controllers
 {
   public class HomeController : Controller
   {
-    private readonly FactoryContext _db;
+    private readonly BakeryTreatsContext _db;
 
-    public HomeController(FactoryContext db)
+    public HomeController(BakeryTreatsContext db)
     {
       _db = db;
     }
