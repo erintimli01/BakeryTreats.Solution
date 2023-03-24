@@ -1,0 +1,33 @@
+
+
+.nav-button {
+  border-radius: 25px;
+  margin: 10px;
+  transition: all 0.2s ease-in-out;
+  color: #4c463d;
+  padding: 10px;
+  border: 2px solid #ab678c; /* Use the same color as Register and Login */
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  color: #4c463d;
+}
+/* Style the Register and Login buttons differently */
+.navbar {
+  font-family: 'Delicious', serif;;
+}
+
+/* Add some texture to the background */
+/* .navbar {
+  background-image: url('texture.jpg');
+} */
+
+/* Give the navigation buttons a playful style */
+/* .nav-button {
+ 
+} */
+
+/* Add a hover effect to the navigation buttons */
+/* .nav-button:hover {
+  background-color: #ab678c; /* Use the same color as Register and Login */
+  /* color: #ffffff;
+} */
