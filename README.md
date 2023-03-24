@@ -25,12 +25,12 @@
 
 * _Clone this repo_
 * _Open the terminal and navigate to this project's production directory called "BakeryTreats.Solution"_
-* _Within the production directory "Factory", create a new file called `appsettings.json`_
+* _Within the production directory "BakeryTreats", create a new file called `appsettings.json`_
 * _In `appsettings.json`, insert the following code:_
 ```
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=factory;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
+      "DefaultConnection": "Server=localhost;Port=3306;database=bakery_treats;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
   }
 }
 ```
