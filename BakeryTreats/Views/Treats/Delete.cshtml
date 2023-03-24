@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BakeryTreats.Models.Treat
+
+<h2>Are you sure you want to delete this treat?</h2>
+
+<h4><strong>Treat:</strong> @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    <button type="submit" class="btn btn-success">Delete Treat</button>
+}
+<br>
+@Html.ActionLink("Back to Treat List", "Index")
