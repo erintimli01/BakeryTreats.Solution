@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BakeryTreats.Models.Treat
+
+<h1>Edit</h1>
+
+<h3><strong>Edit this engineer:</strong> @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+
+  @Html.LabelFor(model => model.Name, "Treat Name:" )
+  @Html.EditorFor(model => model.Name)
+<br>
+  <button type="submit" class="btn btn-success">Save edit</button>
+}
